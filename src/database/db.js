@@ -38,10 +38,10 @@ db.serialize( () => {
     ) VALUES (
       ?, ?, ?, ? , ?, ?, ?   
     );
-  `*/    
+  `    
 
   //Valores a serem usados no insert
-  /*const values = [
+  const values = [
     "https://images.unsplash.com/photo-1567393528677-d6adae7d4a0a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
     "Papersider",
     "Guilherme Gemballa. Jardim America",
@@ -49,20 +49,21 @@ db.serialize( () => {
     "SC",
     "Rio do Sul",
     "Residuos Eletrônicos, Lâmpadas"
-  ]*/
+  ]
 
   //Função de callback após a inserção dos dados na tabela
-  /*function afterInsertData(err) {
+  function afterInsertData(err) {
     if (err) {
       return console.log(err)
     }
 
     console.log("Cadastrado com sucesso")
     console.log(this)
-  }*/
+  }
 
   //Execução do insert
-  /*db.run(queryInsert, values, afterInsertData)*/  
+  db.run(queryInsert, values, afterInsertData)
+  */
 
 
 
@@ -79,12 +80,33 @@ db.serialize( () => {
 
 
   //deletar dados da tabela
-  db.run(`DELETE FROM places WHERE id = ?`, [2], function(err) {
+  /*db.run(`DELETE FROM places`, function(err) {
     if (err) {
       return console.log(err)
     }
 
-    console.log("Registro deletado com sucesso")
+    console.log("Registros deletados com sucesso")
+
+  })*/
+
+
+  //Alterar registros da tabela
+  db.run(`UPDATE places 
+    SET image = ?,
+    name =?,
+    address =?, 
+    address2 =?, 
+    state =?, 
+    city =?, 
+    items =? where id= ? `,["linkdaImagem","nome", "endereco", "numero", "estado", "cidade", "items", 16], function(err) {
+    if (err) {
+      return console.log(err)
+    }
+
+    console.log("Registro alterado  com sucesso")
 
   })
+
+
+
 })
