@@ -20,9 +20,9 @@ db.serialize( () => {
    city TEXT,
    items TEXT
  );
-` *
+` 
 
-  db.run(queryCreatTable)*/
+  db.run(queryCreatTable)
 
   
   //Inserir dados na tabela
@@ -76,36 +76,36 @@ db.serialize( () => {
     console.log("Aqui estão seus registros")
     console.log(rows)
 
-  })*/
+  })
 
 
   //deletar dados da tabela
-  db.run(`DELETE FROM places`, function(err) {
-    if (err) {
-      return console.log(err)
-    }
+  // db.run(`DELETE FROM places`, function(err) {
+  //   if (err) {
+  //     return console.log(err)
+  //   }
 
-    console.log("Registros deletados com sucesso")
+  //   console.log("Registros deletados com sucesso")
 
-  })
+  // })
 
 
-  //Alterar registros da tabela
-  db.run(`UPDATE places 
-    SET image = ?,
-    name =?,
-    address =?, 
-    address2 =?, 
-    state =?, 
-    city =?, 
-    items =? where id= ? `,["linkdaImagem","nome", "endereco", "numero", "estado", "cidade", "items", 16], function(err) {
-    if (err) {
-      return console.log(err)
-    }
+  // //Alterar registros da tabela
+  // db.run(`UPDATE places 
+  //   SET image = ?,
+  //   name =?,
+  //   address =?, 
+  //   address2 =?, 
+  //   state =?, 
+  //   city =?, 
+  //   items =? where id= ? `,["linkdaImagem","nome", "endereco", "numero", "estado", "cidade", "items", 16], function(err) {
+  //   if (err) {
+  //     return console.log(err)
+  //   }
 
-    console.log("Registro alterado  com sucesso")
+  //   console.log("Registro alterado  com sucesso")
 
-  })
+  // })
 
 
 
