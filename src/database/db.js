@@ -9,7 +9,7 @@ module.exports = db
 //utilizar o objeto de banco de dados para nossas operações
 db.serialize( () => {
  //Criar a tabela
- /*const queryCreatTable = `
+ const queryCreatTable = `
  CREATE TABLE IF NOT EXISTS places (
    id INTEGER PRIMARY KEY AUTOINCREMENT,
    image TEXT,
@@ -20,13 +20,13 @@ db.serialize( () => {
    city TEXT,
    items TEXT
  );
-` */
+` *
 
-  /*db.run(queryCreatTable)*/
+  db.run(queryCreatTable)*/
 
   
   //Inserir dados na tabela
-  /*const queryInsert = `
+  const queryInsert = `
     INSERT INTO places (
       image, 
       name,
@@ -63,12 +63,12 @@ db.serialize( () => {
 
   //Execução do insert
   db.run(queryInsert, values, afterInsertData)
-  */
+  
 
 
 
   //Ler dados da tabela
-  /*db.all(`SELECT * FROM places`, function (err, rows) {
+  db.all(`SELECT * FROM places`, function (err, rows) {
     if (err) {
       return console.log(err)
     }
@@ -80,14 +80,14 @@ db.serialize( () => {
 
 
   //deletar dados da tabela
-  /*db.run(`DELETE FROM places`, function(err) {
+  db.run(`DELETE FROM places`, function(err) {
     if (err) {
       return console.log(err)
     }
 
     console.log("Registros deletados com sucesso")
 
-  })*/
+  })
 
 
   //Alterar registros da tabela
