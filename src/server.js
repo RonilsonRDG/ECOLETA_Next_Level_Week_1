@@ -25,6 +25,8 @@ server.get("/create-point", (req, res) => {
   return res.render("create-point.html")
 })
 
+
+
 server.post("/savepoint", (req,res) => {
 
   //Inserir dados na tabela
@@ -36,9 +38,11 @@ server.post("/savepoint", (req,res) => {
       address2, 
       state, 
       city, 
-      items
+      items,
+      email,
+      senha
     ) VALUES (
-      ?, ?, ?, ? , ?, ?, ?   
+      ?, ?, ?, ? , ?, ?, ?, ?, ?   
     );
   `    
 
@@ -50,8 +54,12 @@ server.post("/savepoint", (req,res) => {
     req.body.address2,
     req.body.state,
     req.body.city,
-    req.body.items
+    req.body.items,
+    req.body.email,
+    req.body.senha
   ]
+
+  console.log(req.body.senha)
 
   //Função de callback após a inserção dos dados na tabela
   function afterInsertData(err) {
@@ -71,6 +79,58 @@ server.post("/savepoint", (req,res) => {
   
 })
 
+server.post("/update", (req,res) => {
+
+  //Inserir dados na tabela
+  const queryInsert = `
+   update places set 
+      image=?, 
+      name=?,
+      address=?, 
+      address2=?, 
+      state=?, 
+      city=?, 
+      items=?,
+      email=?,
+      senha=? 
+      where id=?
+    ;
+  `    
+
+  //Valores a serem usados no insert
+  const values = [
+    req.body.image,
+    req.body.name,
+    req.body.address,
+    req.body.address2,
+    req.body.state,
+    req.body.city,
+    req.body.items,
+    req.body.email,
+    req.body.senha,
+    req.body.id
+  ]
+
+  console.log(req.body.senha)
+
+  //Função de callback após a inserção dos dados na tabela
+  function afterUpdateData(err) {
+    if (err) {
+      console.log(err)
+      return res.send("Erro no cadastro!")
+    }
+
+    console.log("Atualizado com sucesso")
+    
+
+    return res.render("create-point.html", {saved:true})
+  }
+
+  //Execução do insert
+  db.run(queryInsert, values, afterUpdateData)
+  
+})
+
 
 
 server.get("/search", (req, res) => {
@@ -83,7 +143,7 @@ server.get("/search", (req, res) => {
 
 
   //pegar os dados do banco de dados
-  db.all(`SELECT * FROM places`, function (err,rows) {
+  db.all(`SELECT * FROM places where city like '%${search}%'`, function (err,rows) {
     if (err) {
       return console.log(err)
     }
@@ -94,6 +154,47 @@ server.get("/search", (req, res) => {
     return res.render("search-results.html", {places: rows, total:total})
   })
 
+  
+})
+
+server.post("/profile", (req, res) => {
+
+  const email = req.body.email
+  const senha = req.body.senha
+
+  db.all(`SELECT * FROM places where email='${email}' and senha='${senha}'`, function (err,rows) {
+    if (err) {
+      return console.log("Erro:", err)
+    }
+
+    const total = rows.length
+   
+    console.log(rows)
+
+     //Mostrar a pagina html com os dados do banco de dados 
+    if (total > 0) {
+      return res.render("profile.html", {places: rows})
+    }
+      return res.send("Usuário/ Senha não encontrado") 
+  
+    
+  })
+  
+})
+
+server.get("/delete", (req, res) => {
+
+  const id = req.query.id
+  console.log(id)
+
+  db.run(`DELETE FROM places where id='${id}'`, function (err) {
+    if (err) {
+      return console.log(err)
+    }
+
+      return res.render("index.html")
+
+  })
   
 })
 

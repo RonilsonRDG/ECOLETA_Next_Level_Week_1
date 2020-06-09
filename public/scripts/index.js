@@ -1,13 +1,23 @@
 const buttonSearch = document.querySelector("#page-home main a")
-
-const modal = document.querySelector("#modal")
-
-const close = document.querySelector("#modal .header a")
+const buttonLogin = document.querySelector("#page-home header .cadlogin .login")
+const modalSearch = document.querySelector("#modal")
+const closeSearch = document.querySelector("#modal .header a")
+const modalLogin = document.querySelector("#modalLogin")
+const closeLogin = document.querySelector("#modalLogin .header a")
 
 buttonSearch.addEventListener("click", () => {
-  modal.classList.remove("hide")
+  modalSearch.classList.remove("hide")
 })
 
-close.addEventListener("click", () => {
-  modal.classList.add("hide")
+closeSearch.addEventListener("click", () => {
+  modalSearch.classList.add("hide")
 })
+
+buttonLogin.addEventListener("click", () => {
+  modalLogin.classList.remove("hide")
+})
+
+closeLogin.addEventListener("click", () => {
+  modalLogin.classList.add("hide")
+})
+

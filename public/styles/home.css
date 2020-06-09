@@ -21,16 +21,35 @@
   justify-content: space-between;
 }
 
-#page-home header a {
+#page-home header .cadlogin {
+  display: flex;
+  justify-content: space-between;
+  width: 420px;
+}
+
+#page-home header .cadlogin  {
   display: flex;
   color: var(--title-color);
   font-weight: 700;
 }
 
-#page-home header a span {
+#page-home header .cadlogin .create,
+#page-home header .cadlogin .login {
+  display: flex;
+}
+
+#page-home header .cadlogin .create span {
   display: flex;
   margin-right: 16px;
-  background-image: url('../assets//log-in.svg');
+  background-image: url('../assets//plus-circle.svg');
+  width: 20px;
+  height: 20px;
+}
+
+#page-home header .cadlogin .login span {
+  display: flex;
+  margin-right: 16px;
+  background-image: url('../assets//log-in-new.svg');
   width: 20px;
   height: 20px;
 }
@@ -70,7 +89,7 @@
 }
 
 #page-home main a:hover {
-  background-color: #2fb86e;
+  background-color: #E2B08C;
 }
 
 #page-home main a span {

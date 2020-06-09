@@ -15,11 +15,18 @@
     <div class="content">
       <header>
         <img src="/assets/logo.svg" alt="Logomarca">
-  
-        <a href="create-point">
-          <span></span>
-          Cadastre um ponto de coleta
-        </a>
+
+        <div class="cadlogin">
+          <a href="create-point" class="create">
+            <span></span>
+            Cadastre um ponto de coleta
+          </a>
+          <a href="#" class="login">
+            <span></span>
+            Acessar meu cadastro
+          </a>
+        </div>  
+        
       </header> 
 
       <main>
@@ -34,6 +41,7 @@
     
   {% block modal %}
     {% include "partials/modal.html" %}
+    {% include "partials/login.html" %}
   {% endblock modal %}
 
   {% block scripts %}

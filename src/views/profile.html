@@ -1,22 +1,17 @@
 {% extends "layout.html" %}
 
-{% set pageId = "page-create-point" %}
-
-{% block title %}
-  <title>Criar ponto de coleta</title>
-{% endblock title %}
+{% set pageId = "page-profile" %}
 
 {% block styles %}
-  <link rel="stylesheet" href="/styles/create-point.css">
-  <link rel="stylesheet" href="/styles/modaL.css">
+  <link rel="stylesheet" href="/styles/profile.css">
 {% endblock styles %}
 
 {% block content %}
   {% include "partials/page-header.html" %}
-
-  <form action="/savepoint" method="POST">
-
-    <h1>Cadastro do ponto de coleta</h1>
+  <main>
+  {% for place in places %}
+  <form action="/update" method="POST" id="dados">
+    <h1>Bem vindo, {{place.name}}!</h1>
     <fieldset>
       <legend>
         <h2>Dados da entidade</h2>
@@ -25,24 +20,24 @@
       <div class="field-group">
         <div class="field">
           <label for="name">Nome da entidade</label>
-          <input type="text" name="name" required="required">
+          <input type="text" name="name" required="required" value={{place.name}}>
         </div>
 
         <div class="field">
           <label for="name">Imagem da entidade</label>
-          <input type="url" name="image" required="required" placeholder="http://example.com/...">
+          <input type="url" name="image" required="required" placeholder="http://example.com/..." value={{place.image}}>
         </div>
       </div>
 
       <div class="field-group">
         <div class="field">
           <label for="email">Email</label>
-          <input type="email" name="email" required="required">
+          <input type="email" name="email" required="required" value={{place.email}}>
         </div>
 
         <div class="field">
           <label for="senha">Senha</label>
-          <input type="password" name="senha" required="required">
+          <input type="password" name="senha" required="required" value={{place.senha}}>
         </div>
       </div>
       
@@ -50,11 +45,11 @@
       <div class="field-group">
         <div class="field">
           <label for="address">Endereço</label>
-          <input type="text" name="address" required="required">
+          <input type="text" name="address" required="required" value={{place.address}}>
         </div>
         <div class="field">
           <label for="address2">Número/Complemento</label>
-          <input type="text" name="address2" required="required">
+          <input type="text" name="address2" required="required" value={{place.address2}}>
         </div>
       </div>
 
@@ -69,7 +64,7 @@
 
         <div class="field">
           <label for="city">Cidade</label>
-          <select name="city" disabled="disabled" required="required">
+          <select name="city" required="required">
             <option value="">Selecione a Cidade</option>
           </select>
         </div>
@@ -119,16 +114,22 @@
     
   </fieldset>
 
-  <button type="submit">Cadastrar ponto de coleta</button>
+  <div id="buttons">
+    <button type="submit" id="buttonAtualizar">Atualizar Dados cadastrais</button>
+  </div>
+  <input type="hidden" name="id" value={{place.id}}>
   </form>
+  <form action="/delete" method="delete" id="deletar">
+    <button type="submit" id="buttonDeletar">
+    <img src="./assets/trash.svg" alt="">  Excluir seu cadastro
+    </button>
+    <input type="hidden" name="id" value={{place.id}}>
+  </form>
+  
+  {% endfor %}
+  </main>
 
 {% endblock content %}
-
-{% block modal %}
-  {% if saved %}
-    {%include "partials/point-created.html"%}
-  {% endif %} 
-{% endblock modal %}
 
 {% block scripts %}
   <script src="/scripts/create-point.js"></script>

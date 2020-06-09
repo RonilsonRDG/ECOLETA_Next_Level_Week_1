@@ -1,24 +1,24 @@
-#page-create-point {
+#page-profile {
   width: 90%;
   max-width: 1100px;
   margin: 0 auto;
 }
 
-#page-create-point header {
+#page-profile header {
   margin-top: 48px;
    display: flex;
    justify-content: space-between;
    align-items: center;
 }
 
-#page-create-point header a {
+#page-profile header a {
   color: var(--title-color);
   font-weight: bold;
   display:flex;
   align-items: center;
 }
 
-#page-create-point header a span {
+#page-profile header a span {
   margin-right: 16px;
   background-image: url('../assets//arrow-left.svg');
   width: 20px;
@@ -26,7 +26,7 @@
   display:flex;
 }
 
-form {
+#dados {
   background-color: white;
   margin: 0 auto;
   margin-top: 80px;
@@ -35,6 +35,23 @@ form {
 
   max-width: 730px;
   
+}
+
+#deletar {
+  display: flex;
+  background-color: white;
+  margin:0 auto;
+  margin-top: 5px;
+  padding: 5px;
+  border-radius: 8px;
+  max-width: 730px;
+  
+  margin-bottom: 10px;
+
+  width: 100%;
+
+  justify-content: center;
+  align-items: center;
 }
 
 form h1 {
@@ -105,7 +122,7 @@ form .field-group .field + .field {
   margin-left: 24px;
 }
 
-form button {
+#buttonAtualizar {
   width: 260px;
   height: 56px;
   background-color: var(--primary-color);
@@ -121,8 +138,32 @@ form button {
   transition: background-color 400ms;
 }
 
-form button:hover {
+#buttonDeletar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 260px;
+  height: 56px;
+  background-color: rgba(243, 42, 42, 0.726);
+  border-radius: 8px;
+  color:white;
+  font-weight: bold;
+  font-size: 16px;
+  border:0;
+  transition: background-color 400ms;
+}
+
+#buttonDeletar img {
+  margin-right: 12px;
+}
+
+#buttonAtualizar:hover {
   background-color: #E2B08C;
+}
+
+
+#buttonDeletar:hover {
+  background-color: rgba(196, 50, 50, 0.726);
 }
 
 .items-grid {
@@ -166,4 +207,9 @@ form button:hover {
 .items-grid li img,
 .items-grid li span {
   pointer-events: none;
+}
+
+main {
+  display:flex;
+  flex-direction: column;
 }
